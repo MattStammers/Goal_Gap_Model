@@ -1,0 +1,6 @@
+-- I used Python v 3.10
+pysd
+streamlit
+IPython
+matplotlib
+pandas

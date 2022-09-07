@@ -2,14 +2,14 @@
 <xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
 	<header>
 		<smile version="1.0" namespace="std, isee"/>
-		<name>New Model</name>
+		<name>Revised_Goal_Gap</name>
 		<uuid>42c58a08-db17-4d43-b049-20c10f20365f</uuid>
 		<vendor>isee systems, inc.</vendor>
 		<product version="2.1.5" isee:build_number="2629" isee:saved_by_v1="true" lang="en">Stella Architect</product>
 	</header>
-	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.0319149" isee:restore_on_start="false" method="Euler" time_units="Months" isee:instantaneous_flows="false" isee:loop_scores="true" isee:loop_exhaustive_allowed="1000">
+	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.136364" isee:restore_on_start="false" method="Euler" time_units="Months" isee:instantaneous_flows="false" isee:loop_scores="true" isee:loop_exhaustive_allowed="1000">
 		<start>1</start>
-		<stop>48</stop>
+		<stop>12</stop>
 		<dt reciprocal="true">4</dt>
 	</sim_specs>
 	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" rerun_on_structure_change="false" saved_runs="5" keep="false" rifp="true"/>
@@ -24,42 +24,14 @@
 			<alias>mo</alias>
 			<alias>month</alias>
 		</unit>
-		<unit name="Per Month">
-			<eqn>1/Months</eqn>
-		</unit>
 	</model_units>
 	<model>
 		<variables>
-			<stock name="52 - 78 weeks">
-				<eqn>2218</eqn>
-				<inflow>&quot;Referrals_waiting_&gt;_52_weeks&quot;</inflow>
-				<outflow>Flow_1</outflow>
-				<non_negative/>
-			</stock>
 			<stock name="&gt; 78 weeks">
 				<eqn>3253</eqn>
-				<inflow>Flow_1</inflow>
 				<outflow>Intervention_Outflow</outflow>
 				<non_negative/>
 			</stock>
-			<stock name="&lt;52 weeks">
-				<eqn>52255</eqn>
-				<inflow>Rate_of_New_Referrals</inflow>
-				<outflow>&quot;Referrals_waiting_&gt;_52_weeks&quot;</outflow>
-				<non_negative/>
-			</stock>
-			<flow name="Referrals waiting &gt; 52 weeks">
-				<eqn>DELAY(&quot;Rate_of_People_Becoming_&gt;52_week_waits_every_week&quot;, 52)-&quot;Rate_of_clock_stops_&lt;52&quot;</eqn>
-				<non_negative/>
-			</flow>
-			<flow name="Flow 1">
-				<eqn>DELAY(&quot;Rate_of_People_becoming_a_&gt;_78_week_wait&quot;, 26)-&quot;Rate_of_clock_stops_&lt;72&quot;</eqn>
-				<non_negative/>
-			</flow>
-			<aux name="Rate of People becoming\na &gt; 78 week wait">
-				<eqn>450</eqn>
-				<units>Per Month</units>
-			</aux>
 			<aux name="Goal 1">
 				<eqn>0</eqn>
 			</aux>
@@ -78,30 +50,6 @@
 			<aux name="Adjustment">
 				<eqn>3</eqn>
 				<units>Months</units>
-			</aux>
-			<aux name="New Referrals into the system">
-				<eqn>20000</eqn>
-				<units>Per Month</units>
-			</aux>
-			<flow name="Rate of New Referrals">
-				<eqn>New_Referrals_into_the_system-Rate_of_clock_stops</eqn>
-				<non_negative/>
-			</flow>
-			<aux name="Rate of clock stops">
-				<eqn>19000</eqn>
-				<units>Per Month</units>
-			</aux>
-			<aux name="Rate of clock stops &lt;52">
-				<eqn>400</eqn>
-				<units>Per Month</units>
-			</aux>
-			<aux name="Rate of clock stops &lt;72">
-				<eqn>400</eqn>
-				<units>Per Month</units>
-			</aux>
-			<aux name="Rate of People Becoming &gt;52\nweek waits every week">
-				<eqn>500</eqn>
-				<units>Per Month</units>
 			</aux>
 		</variables>
 		<views>
@@ -194,33 +142,7 @@
 						</plot>
 					</graph>
 				</stacked_container>
-				<stock x="689" y="174" name="52 - 78 weeks"/>
 				<stock x="837" y="170" name="&gt; 78 weeks"/>
-				<stock x="535.5" y="174" name="&lt;52 weeks"/>
-				<flow x="606.25" y="174" name="Referrals waiting &gt; 52 weeks">
-					<pts>
-						<pt x="558" y="174"/>
-						<pt x="666.5" y="174"/>
-					</pts>
-				</flow>
-				<stacked_container uid="7" x="661" y="531">
-					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name='"52_-_78_weeks"'/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<flow x="757" y="170" name="Flow 1">
-					<pts>
-						<pt x="711.5" y="170"/>
-						<pt x="814.5" y="170"/>
-					</pts>
-				</flow>
-				<aux x="757" y="241.5" name="Rate of People becoming\na &gt; 78 week wait"/>
-				<connector uid="8" angle="74.4072">
-					<from>&quot;Rate_of_People_becoming_a_&gt;_78_week_wait&quot;</from>
-					<to>Flow_1</to>
-				</connector>
 				<aux x="931" y="54" name="Goal 1"/>
 				<aux x="906" y="108" name="Gap 1"/>
 				<connector uid="9" angle="175.236">
@@ -254,45 +176,7 @@
 						</plot>
 					</graph>
 				</stacked_container>
-				<aux x="463" y="90" name="New Referrals into the system"/>
-				<flow x="455" y="174" name="Rate of New Referrals">
-					<pts>
-						<pt x="397" y="174"/>
-						<pt x="513" y="174"/>
-					</pts>
-				</flow>
-				<connector uid="14" angle="251.565">
-					<from>New_Referrals_into_the_system</from>
-					<to>Rate_of_New_Referrals</to>
-				</connector>
-				<stacked_container uid="15" x="264" y="528">
-					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name='"&lt;52_weeks"'/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<aux x="452" y="256.5" name="Rate of clock stops"/>
-				<connector uid="18" angle="73.0339">
-					<from>Rate_of_clock_stops</from>
-					<to>Rate_of_New_Referrals</to>
-				</connector>
-				<aux x="615" y="90" name="Rate of clock stops &lt;52"/>
-				<connector uid="19" angle="270">
-					<from>&quot;Rate_of_clock_stops_&lt;52&quot;</from>
-					<to>&quot;Referrals_waiting_&gt;_52_weeks&quot;</to>
-				</connector>
-				<aux x="757" y="95" name="Rate of clock stops &lt;72"/>
-				<connector uid="20" angle="278.881">
-					<from>&quot;Rate_of_clock_stops_&lt;72&quot;</from>
-					<to>Flow_1</to>
-				</connector>
-				<aux x="606.25" y="234.5" name="Rate of People Becoming &gt;52\nweek waits every week"/>
-				<connector uid="6" angle="76.9742">
-					<from>&quot;Rate_of_People_Becoming_&gt;52_week_waits_every_week&quot;</from>
-					<to>&quot;Referrals_waiting_&gt;_52_weeks&quot;</to>
-				</connector>
-				<stacked_container uid="21" x="1062" y="796">
+				<stacked_container uid="21" x="620" y="509">
 					<table width="350" height="250">
 						<item type="time"/>
 						<item>

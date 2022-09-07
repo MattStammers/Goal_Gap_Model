@@ -15,7 +15,7 @@ st.title('Over 78 Week Wait Goal Gap Model')
 st.subheader('Enter the Size of the Backlog')
 start_point = st.number_input(label='Backlog Size', min_value=None, max_value=None, value=3253)
 st.subheader('Slide the Slider to Vary The Adjustment Time')
-adjustment_time = st.slider("Adjustment Time", 1, 12, 0.25)
+adjustment_time = st.slider("Adjustment Time", 1, 12, 1)
 
 # Run the Model
 

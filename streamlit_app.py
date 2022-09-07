@@ -15,7 +15,7 @@ st.title('Over 78 Week Wait Goal Gap Model')
 st.subheader('Enter the Size of the Backlog')
 start_point = st.number_input(label='Backlog Size', min_value=None, max_value=None, value=3253)
 st.subheader('Slide the Slider to Vary The Adjustment Time')
-adjustment_time = st.slider("Adjustment Time", 1, 12, 1)
+adjustment_time = st.slider("Adjustment Time in Months", 1, 12, 1)
 
 # Run the Model
 
@@ -24,6 +24,5 @@ values = model.run(initial_condition=(0,{'> 78 weeks': start_point}), params={'A
 # Export the Simulation Results
 
 df_waiters = values[['> 78 weeks','Closed Long- Wait Pathways']]
-st.subheader('Effects of Increasing Effort to Close Long Waiter Pathways')
+st.subheader('Effects of Increasing Effort to Close Long Waiter Pathways - Predictions over 1 Year')
 st.line_chart(df_waiters)
-print(values)
